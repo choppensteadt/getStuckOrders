@@ -1,0 +1,25 @@
+<resources>
+	<!-- Main Menu -->
+	<string name="mainmenu_logout">Logout</string>
+	<string name="mainmenu_about">About</string>
+	
+	<!-- Login Page -->
+	<string name="product_name">Axway CSOS</string>
+	<string name="welcome_message">Welcome.</string>
+	<string name="login">Sign in</string>
+	<string name="username">Username</string>
+	<string name="password">Password</string>
+	<string name="remember">Remember me</string>
+	
+	<!-- Orders Page -->
+	<string name="order_page_title">Order Management</string>
+	<string name="pending_button">My Pending Orders</string>
+	<string name="certificates_button">My Certificates</string>
+
+	<!-- Order Detail Page -->
+	<string name="pending_order_page_title">Approve CSOS Order</string>
+	<string name="pending_order_form_title">DEA e222 Form</string>
+	<string name="sign_order">Sign Order</string>
+	<string name="pending_order_declaration">No order may be issued for Schedule I and II substances unless a completed application form has been received.(21 CFR 1305.04).  OMB APPROVAL No. 1117-0010</string>	
+	<string name="pending_order_instructions">Please review this order form. If everything is satisfactory, enter your certificate password below and click the approve button.</string>
+</resources>

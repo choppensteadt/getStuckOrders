@@ -1,0 +1,43 @@
+<Alloy>
+	<Window id="orders" backgroundColor="white" title="L('order_page_title')"  >
+		<Menu id="menu" platform="android">
+			<MenuItem id="mtmLogout" title="L('mainmenu_logout')" onClick="mnuLogoutClicked" />
+			<MenuItem id="mtmAbout" title="L('mainmenu_about')" onClick="mnuAboutClicked" />
+		</Menu>
+		<Button id="btnPendingOrders" title="L('pending_button')" onClick="btnPendingOrdersPressed"></Button>
+		<Button id="btnCertificates" title="L('certificates_button')"onClick="getCertificates"></Button>
+		<View id="vwSeparatorBar" height="1" width="100%" backgroundColor="#407CA0" />
+		<ListView id="lvwOrders" onItemclick="openOrderDetail" canScroll="true" showVerticalScrollIndicator="true" >
+            <Templates>
+                <ItemTemplate id="orderDetailTemplate" height="80" name="orderDetailTemplate" >
+                    <Label bindId="originationTime" id="label_originationTime" visible="false" />
+                    <Label bindId="originationDate" id="label_originationDate" />
+                    <Label bindId="senderRoutingID" id="label_senderRoutingID" />
+                    <Label bindId="csosPoNumber" id="label_csosPoNumber" />
+                    <Label bindId="csosDeaRegistrationNumber" id="label_csosDeaRegistrationNumber" />
+                    <Label bindId="id" id="label_id" visible="false" />
+                </ItemTemplate>
+            </Templates>
+            <ListSection id="orderListSection" >
+            	<ListItem id="orderListItem" />
+            </ListSection>
+        </ListView>
+        <ListView id="lvwCertificates" canScroll="true" showVerticalScrollIndicator="true" >
+            <Templates>
+                <ItemTemplate id="certificatesTemplate" height="80" name="certificatesTemplate" >
+                    <Label bindId="id" id="label_id" visible="false" />
+                    <Label bindId="certificateName" id="label_certificateName" />
+                    <Label bindId="certificateState" id="label_certificateState" />
+                    <Label bindId="validFrom" id="label_validFrom" visible="false" />
+                    <Label bindId="validTo" id="label_validTo" />
+                    <Label bindId="deaRegistrationNumber" id="label_deaRegistrationNumber" />
+
+                </ItemTemplate>
+            </Templates>
+            <ListSection id="certificateListSection" >
+            	<ListItem id="certificateListItem" />
+            </ListSection>
+        </ListView>
+        <ActivityIndicator id="activityIndicator" />
+	</Window>
+</Alloy>

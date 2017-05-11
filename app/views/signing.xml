@@ -1,0 +1,42 @@
+<Alloy>
+	<Window id="pendingOrderDetail" backgroundColor="#E9EAEA" title="L('pending_order_page_title')" >
+		<Menu id="menu" platform="android">
+			<MenuItem id="mtmLogout" title="L('mainmenu_logout')" onClick="mnuLogoutClicked" />
+			<MenuItem id="mtmAbout" title="L('mainmenu_about')" onClick="mnuAboutClicked" />
+		</Menu>
+		<Label id="lblPageTitle" />
+		<Label id="lblDeclaration" />
+		<Label id="lblSellerName" />
+		<Label id="lblInstructionsForUse" title="L('pending_order_instructions')" />
+		<Label id="lblOrderDateLabel" title="Date (MM-DD-YYYY):" />
+		<Label id="lblOrderDate" />
+		<Label id="lblSellerDeaRegistrationNumberLabel" title="Supplier's DEA Registration Number:" />
+		<Label id="lblSellerDeaRegistrationNumber" />
+		<Label id="lblPurchaserDeaRegistrationNumberLabel" title="DEA Registration No." />
+		<Label id="lblPurchaserDeaRegistrationNumber" />
+		<Label id="lblOrderNumberLabel" title="No. of this Order Form" />
+		<Label id="lblOrderNumber" />
+		<Label id="lblPurchaserNameAndAddressLabel" title="Name and Address of Registrant" />
+		<Label id="lblPurchaserNameAndAddress" />
+		<Label id="lblFormLabel" title="DEA Form 222(Jun. 1983)" />
+		<Label id="lblFormDetailsLabel" title="U.S.OFFICAL ORDER FORMS -SCHEDULES I & II DRUG ENFORCEMENT ADMINISTRATION" />
+		<TextField id="txtCertificatePassword" hintText="signing password" />
+		<Button id="btnSign" onClick="btnSignClicked" />
+		<ListView id="lvwOrderedItems" canScroll="true" showVerticalScrollIndicator="true" >
+            <Templates>
+                <ItemTemplate id="orderedItemsTemplate" height="40" name="orderedItemsTemplate" >
+                    <Label bindId="lineNumber" id="label_lineNumber" />
+                    <Label bindId="quantityOrdered" id="label_quantityOrdered" />
+                    <Label bindId="sizeOfPackages" id="label_sizeOfPackages" />
+                    <Label bindId="measurementCode" id="label_measurementCode" />
+                    <Label bindId="itemName" id="label_itemName" />
+                    <Label bindId="ndc" id="label_ndc" />
+                </ItemTemplate>
+            </Templates>
+            <ListSection id="orderedItemsListSection" >
+            	<ListItem id="orderedItemsListItem" />
+            </ListSection>
+        </ListView>
+        <ActivityIndicator id="activityIndicator" />
+	</Window>
+</Alloy>

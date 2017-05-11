@@ -1,0 +1,107 @@
+"Window[platform=android]": {
+	backgroundColor: '#white'
+}
+"#btnPendingOrders[platform=android formFactor=tablet]": {
+	top: 10,
+	left: 10,
+	width: 240,
+	backgroundColor: "white",
+	borderRadius: "5",
+	font: {
+        fontSize: 20,
+  		fontFamily: 'OpenSans-Regular',
+  	},
+}
+"#btnCertificates[platform=android formFactor=tablet]": {
+	top: 10,
+	left: 255,
+	width: 240,
+	backgroundColor: "white",
+	borderRadius: "5",
+	font: {
+        fontSize: 20,
+  		fontFamily: 'OpenSans-Regular',
+  	},
+}
+"#vwSeparatorBar[platform=android formFactor=tablet]":{
+	top: 70,
+}
+"#lvwOrders[platform=android formFactor=tablet]":{
+	top: 85,
+}
+"#label_senderRoutingID[platform=android formFactor=tablet]": {
+	top: 10,
+	left: 20,
+	font: {
+		fontWeight: 'bold',
+		fontSize: 20,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_csosPoNumber[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 20,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_csosDeaRegistrationNumber[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 180,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_originationDate[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 390,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#lvwCertificates[platform=android formFactor=tablet]":{
+	top: 85,
+}
+"#label_certificateName[platform=android formFactor=tablet]": {
+	top: 10,
+	left: 20,
+	font: {
+		fontWeight: 'bold',
+		fontSize: 20,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_certificateState[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 20,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_deaRegistrationNumber[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 180,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_validTo[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 390,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#activityIndicator[platform=android]": {
+	top: '50%',
+	left: '50%',
+	style: Ti.UI.ActivityIndicatorStyle.BIG_DARK,
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+}
