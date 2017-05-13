@@ -10,6 +10,8 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+Alloy.Globals.deaRegNums = [];
+Alloy.Globals.deaRegNum = null;
 Alloy.Globals.hostIP = null;
 Alloy.Globals.username = null;
 Alloy.Globals.password = null;

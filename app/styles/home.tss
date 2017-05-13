@@ -46,7 +46,7 @@
   		fontFamily: 'OpenSans-Regular',
 	}
 }
-"#label_csosDeaRegistrationNumber[platform=android formFactor=tablet]": {
+"#label_csosDeaRegistrationNumberString[platform=android formFactor=tablet]": {
 	top: 40,
 	left: 180,
 	font: {

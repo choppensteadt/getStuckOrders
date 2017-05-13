@@ -1,16 +1,18 @@
-var args = arguments[0];
-var deaRegNum = args.deaRegistrationNumber;
+var deaRegNums = arguments[0];
+
+Alloy.Globals.deaRegNums = arguments[0];
 
 $.activityIndicator.show();
 
 $.btnPendingOrders.setBorderColor("#407CA0");
 
-getSessionServiceThenPendingOrders(deaRegNum);
+getSessionServiceThenPendingOrders(deaRegNums);
 
 function btnPendingOrdersPressed(){
-	getSessionServiceThenPendingOrders(deaRegNum);
+	$.activityIndicator.show();	
+	getSessionServiceThenPendingOrders(Alloy.Globals.deaRegNums);
 }
-function getSessionServiceThenPendingOrders(deaRegNum){
+function getSessionServiceThenPendingOrders(deaRegNums){
 	var url = "http://"+Alloy.Globals.hostIP+":6080/cyclone/services/SessionService";
 	
 	var sessionRequest = 
@@ -30,7 +32,7 @@ function getSessionServiceThenPendingOrders(deaRegNum){
 			var xml = this.responseXML;
 			var session = xml.documentElement.getElementsByTagName("loginReturn").item(0).textContent;
 
-			getPendingOrdersWebService(session, deaRegNum);
+			getPendingOrdersWebService(session, deaRegNums);
 
 			$.activityIndicator.hide();
 	    },
@@ -48,7 +50,7 @@ function getSessionServiceThenPendingOrders(deaRegNum){
 	xhr.send(sessionRequest);
 }
 
-function getPendingOrdersWebService(session, deaRegNum){
+function getPendingOrdersWebService(session, deaRegNums){
 
 	$.btnCertificates.setBorderColor("white");	
 	$.btnPendingOrders.setBorderColor("#407CA0");
@@ -72,8 +74,6 @@ function getPendingOrdersWebService(session, deaRegNum){
 	                    <mes:metaDataAttribute>
 	                        <mes:name>CsosIsPendingOrder</mes:name>
 	                        <mes:value>true</mes:value>
-	                        <mes:name>CsosDeaRegistrationNumber</mes:name>
-	                        <mes:value>"+deaRegNum+"</mes:value>
 	                    </mes:metaDataAttribute>
 	                    <mes:sortOption>
 	                        <mes:ascendingOrder>true</mes:ascendingOrder>
@@ -92,11 +92,11 @@ function getPendingOrdersWebService(session, deaRegNum){
 			messages = [];
 			
 			var xmlMessages = xml.documentElement.getElementsByTagName("messages");
-			var xmlMessagesCount = xmlMessages.length;
+			var xmlMessagesCount = xml.documentElement.getElementsByTagName("messages").item(0).getChildNodes().length;
 
 			for (var i=0; i < xmlMessagesCount; i++){
 				
-				var oDate = xmlMessages.item(i).getElementsByTagName("originationDate").item(0).textContent;
+				var oDate = xmlMessages.item(0).getElementsByTagName("originationDate").item(i).textContent;
 
 				// Convert originationDate to MM-DD-YYYY format (no i18n/L10n is needed as this is a US only regulation)
 				var date = new Date(oDate);
@@ -104,18 +104,18 @@ function getPendingOrdersWebService(session, deaRegNum){
 				
 				var originationDate = ("0"+(date.getMonth()+1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "-" + date.getFullYear()+ " " +date.getHours() + ":" + date.getMinutes() + " (" + tzo.toString() + ")";
 
-				var coreId = xmlMessages.item(i).getElementsByTagName("coreId").item(0).textContent;
-				var senderPartyId = xmlMessages.item(i).getElementsByTagName("senderPartyId").item(0).textContent;
-				var senderPartyName = xmlMessages.item(i).getElementsByTagName("senderPartyName").item(0).textContent;
-				var senderRoutingId = xmlMessages.item(i).getElementsByTagName("senderRoutingId").item(0).textContent;
+				var coreId = xmlMessages.item(0).getElementsByTagName("coreId").item(i).textContent;
+				//var senderPartyId = xmlMessages.item(0).getElementsByTagName("senderPartyId").item(i).textContent;
+				var senderPartyName = xmlMessages.item(0).getElementsByTagName("senderPartyName").item(i).textContent;
+				//var senderRoutingId = xmlMessages.item(0).getElementsByTagName("senderRoutingId").item(i).textContent;
 
-				var receiverPartyId = xmlMessages.item(i).getElementsByTagName("receiverPartyId").item(0).textContent;
-				var receiverPartyName = xmlMessages.item(i).getElementsByTagName("receiverPartyName").item(0).textContent;
-				var receiverRoutingId = xmlMessages.item(i).getElementsByTagName("receiverRoutingId").item(0).textContent;
+				//var receiverPartyId = xmlMessages.item(0).getElementsByTagName("receiverPartyId").item(i).textContent;
+				var receiverPartyName = xmlMessages.item(0).getElementsByTagName("receiverPartyName").item(i).textContent;
+				//var receiverRoutingId = xmlMessages.item(0).getElementsByTagName("receiverRoutingId").item(i).textContent;
 
 				var senderReceiverString = senderPartyName+" > "+receiverPartyName;
 
-				var xmlMetadataAttributes = xmlMessages.item(i).getElementsByTagName("metaDataAttributes").item(0).getElementsByTagName("item");
+				var xmlMetadataAttributes = xmlMessages.item(0).getElementsByTagName("metaDataAttributes").item(i).getElementsByTagName("item");
 				var xmlMetadataAttributesCount = xmlMetadataAttributes.length;
 
 				for (var j=0; j < xmlMetadataAttributesCount; j++){
@@ -125,17 +125,25 @@ function getPendingOrdersWebService(session, deaRegNum){
 					}
 					if(xmlMetadataAttributes.item(j).getElementsByTagName("name").item(0).textContent == "CsosDeaRegistrationNumber"){
 						var csosDeaRegistrationNumber = xmlMetadataAttributes.item(j).getElementsByTagName("value").item(0).textContent;
-						var deaRegistrationNumberString = "DEA #: "+csosDeaRegistrationNumber;
+						var csosDeaRegistrationNumberString = "DEA #: "+csosDeaRegistrationNumber;
 					}
 				}
-				messages.push({
-					senderRoutingID:{text:senderReceiverString},
-					originationDate:{text:originationDate},
-					csosPoNumber:{text:poNumberString},
-					csosDeaRegistrationNumber:{text:deaRegistrationNumberString},
-					id:{text:coreId},
-					template:'orderDetailTemplate'
-				});
+				for(var l=0; l < deaRegNums.length; l++){
+					
+					var deaRegNum = deaRegNums[l].deaRegistrationNumber.text;
+
+					if (csosDeaRegistrationNumber == deaRegNum){
+						messages.push({
+							senderRoutingID:{text:senderReceiverString},
+							originationDate:{text:originationDate},
+							csosPoNumber:{text:poNumberString},
+							csosDeaRegistrationNumberString:{text:csosDeaRegistrationNumberString},
+							csosDeaRegistrationNumber:{text:csosDeaRegistrationNumber},
+							id:{text:coreId},
+							template:'orderDetailTemplate'
+						});	
+					}
+				}
 			}
 			$.orderListSection.setItems(messages);
 			$.activityIndicator.hide();
@@ -155,7 +163,8 @@ function getPendingOrdersWebService(session, deaRegNum){
 function openOrderDetail(e) {
 	var order = $.orderListSection.getItemAt(e.itemIndex);
 	var orderId = order.id.text;
-	var args = {"orderId":orderId};
+	var deaRegNum = order.csosDeaRegistrationNumber.text;
+	var args = {"orderId":orderId,"deaRegNum":deaRegNum};
 	var signing = Alloy.createController('signing',args).getView();
 	signing.open();
 }

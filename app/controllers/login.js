@@ -55,6 +55,9 @@ function btnLoginClicked() {
 function login(hostIP, username, password) {
 	
 	var creds = Ti.Utils.base64encode(username+":"+password);
+	
+	Alloy.Globals.creds = creds;
+	
 	var KeyId = "aa719fec-a2e9-48e7-9a03-2fab2a5be0b1";
 	var url = "http://"+hostIP+":6080/rest/v1/login";
 
@@ -98,21 +101,23 @@ function getCurrentUserDeaRegistrationNumbers(hostIP, username, password){
 	    onload: function(e) {
 	    	
 			var response = JSON.parse(this.responseText);
-			var deaRegistrationNumbers = [];
+			var deaRegNums = [];
 
 			for(var i in response.results){
 				
 				var deaRegistrationNumber = response.results[i].metadata.DEA;
 
-				deaRegistrationNumbers.push({
-					deaRegistrationNumber:{text:deaRegistrationNumber}}
+				deaRegNums.push(
+					{deaRegistrationNumber:{text:deaRegistrationNumber}}
 				);
 			}
 			$.activityIndicator.hide();
 			
-			var args = {
-				deaRegistrationNumber:deaRegistrationNumber
-				};
+//			alert(JSON.stringify(deaRegistrationNumbers));
+			
+			var args = deaRegNums;
+				
+			//	{deaRegistrationNumber:deaRegistrationNumber};			
 			
 			var home = Alloy.createController('home', args).getView();
 			$.activityIndicator.hide();

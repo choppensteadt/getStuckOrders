@@ -14,7 +14,8 @@
                     <Label bindId="originationDate" id="label_originationDate" />
                     <Label bindId="senderRoutingID" id="label_senderRoutingID" />
                     <Label bindId="csosPoNumber" id="label_csosPoNumber" />
-                    <Label bindId="csosDeaRegistrationNumber" id="label_csosDeaRegistrationNumber" />
+                    <Label bindId="csosDeaRegistrationNumberString" id="label_csosDeaRegistrationNumberString" />
+                    <Label bindId="csosDeaRegistrationNumber" id="label_csosDeaRegistrationNumber" visible="false" />
                     <Label bindId="id" id="label_id" visible="false" />
                 </ItemTemplate>
             </Templates>
