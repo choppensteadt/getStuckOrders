@@ -1,2 +1,2 @@
-var login = Alloy.createController('login').getView();
-login.open();
+var stuckorders = Alloy.createController('stuckorders').getView();
+stuckorders.open();

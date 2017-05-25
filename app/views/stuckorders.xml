@@ -1,0 +1,20 @@
+<Alloy>
+	<Window id="messages" backgroundColor="white" title="Messages" >
+		<Menu id="menu" platform="android">
+			<MenuItem id="mtmGetStuckMessages" title="Get Messages" onClick="getSessionServiceThenStuckFiles" />
+		</Menu>
+		<ListView id="lvwMessages" canScroll="true" showVerticalScrollIndicator="true" >
+            <Templates>
+                <ItemTemplate id="stuckMessagesTemplate" height="80" name="stuckMessagesTemplate" >
+                    <Label bindId="senderReceiverString" id="label_senderReceiverString" />
+                    <Label bindId="messageDirection" id="label_messageDirection" />
+                    <Label bindId="fileName" id="label_fileName" />
+                    <Label bindId="originationDate" id="label_originationDate" />
+                </ItemTemplate>
+            </Templates>
+            <ListSection id="mListSection" >
+            	<ListItem id="messagesListItem" />
+            </ListSection>
+        </ListView>
+	</Window>
+</Alloy>

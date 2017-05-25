@@ -1,0 +1,39 @@
+"Window[platform=android]": {
+	backgroundColor: '#white'
+}
+"#lvwMessages[platform=android formFactor=tablet]":{
+	top: 10,
+}
+"#label_senderReceiverString[platform=android formFactor=tablet]": {
+	top: 10,
+	left: 20,
+	font: {
+		fontWeight: 'bold',
+		fontSize: 20,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_messageDirection[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 20,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_fileName[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 180,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
+"#label_originationDate[platform=android formFactor=tablet]": {
+	top: 40,
+	left: 390,
+	font: {
+		fontSize: 18,
+  		fontFamily: 'OpenSans-Regular',
+	}
+}
